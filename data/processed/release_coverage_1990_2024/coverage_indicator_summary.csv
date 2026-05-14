@@ -1,0 +1,5 @@
+indicator,window_start,window_end,countries_in_scope,country_years_possible,country_years_computable,coverage_pct,countries_with_any_data,countries_with_full_window,median_years_per_country
+LI,1990,2023,217,7378,6597,89.41,199,184,34.0
+ILI,1990,2023,217,7378,2180,29.55,168,3,5.0
+HLI,1990,2021,217,6944,3925,56.52,179,0,22.0
+IHLI,1990,2021,217,6944,1668,24.02,159,0,4.0

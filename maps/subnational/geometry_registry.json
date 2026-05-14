@@ -1,0 +1,212 @@
+{
+  "registryVersion": 1,
+  "entries": [
+    {
+      "id": "usa_oecd_tl2_adm1",
+      "countryCodes": [
+        "USA"
+      ],
+      "namespaceFamilyIds": [
+        "oecd_tl2"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/usa_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "canada_oecd_tl2_adm1",
+      "countryCodes": [
+        "CAN"
+      ],
+      "namespaceFamilyIds": [
+        "oecd_tl2"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/can_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "germany_oecd_tl2_adm1",
+      "countryCodes": [
+        "DEU"
+      ],
+      "namespaceFamilyIds": [
+        "oecd_tl2"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/deu_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "china_oecd_tl2_adm1",
+      "countryCodes": [
+        "CHN"
+      ],
+      "namespaceFamilyIds": [
+        "oecd_tl2"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/chn_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "china_province_adm1",
+      "countryCodes": [
+        "CHN"
+      ],
+      "namespaceFamilyIds": [
+        "province"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/chn_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "india_oecd_tl2_adm1",
+      "countryCodes": [
+        "IND"
+      ],
+      "namespaceFamilyIds": [
+        "oecd_tl2"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/ind_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "mexico_state_adm1",
+      "countryCodes": [
+        "MEX"
+      ],
+      "namespaceFamilyIds": [
+        "state"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/mex_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "argentina_dnap_province_adm1",
+      "countryCodes": [
+        "ARG"
+      ],
+      "namespaceIds": [
+        "arg_dnap_province_v3"
+      ],
+      "joinFamily": "iso_code_join",
+      "assetPath": "maps/subnational/arg_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "Datos Argentina / IGN first-order provincial polygons",
+      "available": true
+    },
+    {
+      "id": "australia_gdl_state_adm1",
+      "countryCodes": [
+        "AUS"
+      ],
+      "namespaceIds": [
+        "gdl_shdi_aus_levelx_v3"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/aus_adm1.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM1",
+      "available": true
+    },
+    {
+      "id": "saudi_gdl_grouped_adm1",
+      "countryCodes": [
+        "SAU"
+      ],
+      "namespaceIds": [
+        "gdl_shdi_sau_levelx_v3"
+      ],
+      "joinFamily": "adm1_name_join",
+      "assetPath": "maps/subnational/sau_gdl_groups.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries ADM1 grouped to GDL SHDI macro-regions",
+      "available": true
+    },
+    {
+      "id": "sri_lanka_dcs_district_adm2",
+      "countryCodes": [
+        "LKA"
+      ],
+      "namespaceIds": [
+        "lka_dcs_district_v3"
+      ],
+      "joinFamily": "iso_code_join",
+      "assetPath": "maps/subnational/lka_adm2.geojson",
+      "featureLabelProperty": "shapeName",
+      "featureCodeProperty": "shapeISO",
+      "boundarySource": "geoBoundaries simplified ADM2",
+      "available": true
+    },
+    {
+      "id": "eu_nuts2_shared",
+      "countryCodes": [
+        "AUT",
+        "BEL",
+        "BGR",
+        "CYP",
+        "CZE",
+        "DEU",
+        "DNK",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GRC",
+        "HRV",
+        "HUN",
+        "IRL",
+        "ITA",
+        "LTU",
+        "LUX",
+        "LVA",
+        "MLT",
+        "NLD",
+        "POL",
+        "PRT",
+        "ROU",
+        "SVK",
+        "SVN",
+        "SWE"
+      ],
+      "namespaceFamilyIds": [
+        "eu_nuts2"
+      ],
+      "joinFamily": "nuts2_code_join",
+      "assetPath": "maps/subnational/eu_nuts2_2021_20m.geojson",
+      "featureLabelProperty": "NUTS_NAME",
+      "featureCodeProperty": "NUTS_ID",
+      "countryFilterProperty": "CNTR_CODE",
+      "boundarySource": "Shared EU NUTS2 geometry asset",
+      "available": true
+    }
+  ]
+}

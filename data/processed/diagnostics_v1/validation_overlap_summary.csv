@@ -1,0 +1,5 @@
+indicator,overlap_rows,countries,year_min,year_max,clean_mean,extended_mean,mean_signed_diff,mean_abs_diff,median_abs_diff,rmse,overall_spearman,median_yearly_spearman,trend_direction_agreement,positive_diff_share
+LI,6597,199,1990,2023,1647702.2382838817,1647702.2382838817,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+ILI,2180,168,1990,2023,1388446.2713886343,1388446.2713886343,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+HLI,3925,179,2000,2021,1403693.3759575686,1403693.3759575686,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0
+IHLI,1668,159,2000,2021,1274981.3990372417,1274981.3990372417,0.0,0.0,0.0,0.0,1.0,1.0,1.0,0.0

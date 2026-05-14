@@ -1,0 +1,15 @@
+column,description
+namespace,Stable regional dataset identifier used internally and in downloads.
+namespace_label,Reader-facing regional dataset label.
+track,"Three-track UI track: Core baseline, Extended Gini, or Extended Gini + Extended HALE."
+evidence_tier,"Evidence class such as official_observed, harmonized_observed, proxy_observed, modelled, or approximation_candidate."
+source_evidence_badges,Pipe-separated evidence badges displayed by the atlas.
+limitation_note,Short human-readable limitation generated from evidence fields.
+LI,Life income = income or GDPpc input multiplied by life expectancy.
+ILI,Inequality-adjusted life income = LI multiplied by one minus Gini.
+HLI,Healthy life income = income or GDPpc input multiplied by HALE.
+IHLI,Inequality-adjusted healthy life income = HLI multiplied by one minus Gini.
+gdppc,Regional monetary input. Unit and proxy status depend on source_bundle and quality_flag.
+lexp,Regional life expectancy input.
+hale,Regional healthy life expectancy input where observed or modelled and bridgeable.
+gini_01,Regional Gini or labelled Gini proxy on 0-1 scale.

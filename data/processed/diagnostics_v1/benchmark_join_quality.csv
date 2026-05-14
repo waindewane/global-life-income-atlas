@@ -1,0 +1,9 @@
+track,indicator,benchmark,rows_in_indicator_panel,rows_with_benchmark,dropped_rows,join_rate_pct,countries_with_benchmark
+extended_experimental,HLI,HDI,3925,3792,133,96.61,177
+extended_experimental,IHLI,HDI,3388,3302,86,97.46,177
+extended_experimental,ILI,HDI,4984,4721,263,94.72,186
+extended_experimental,LI,GDPpc,6597,6597,0,100.0,199
+official_clean,HLI,HDI,3925,3792,133,96.61,177
+official_clean,IHLI,HDI,1668,1657,11,99.34,159
+official_clean,ILI,HDI,2180,2135,45,97.94,166
+official_clean,LI,GDPpc,6597,6597,0,100.0,199

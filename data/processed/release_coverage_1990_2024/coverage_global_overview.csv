@@ -1,0 +1,7 @@
+metric,value,notes
+entities_in_matrix_total,261,Includes WB aggregate entities
+countries_in_scope_total,217,WB non-aggregate countries/territories only
+year_min_in_matrix,1990,
+year_max_in_matrix,2024,
+li_ili_latest_year,2023,Observed non-null LI cutoff
+hli_ihli_latest_year,2021,Observed non-null HALE cutoff

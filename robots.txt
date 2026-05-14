@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# This public-by-link reviewer site is not intended for search indexing.

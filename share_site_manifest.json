@@ -1,0 +1,70 @@
+{
+  "generated_at": "2026-05-14T23:53:43",
+  "source_bundle": "reports/generated/polished_output_bundle",
+  "share_site": "reports/generated/share_site",
+  "file_count": 45,
+  "total_bytes": 239615619,
+  "total_mib": 228.52,
+  "largest_file_bytes": 60627780,
+  "largest_file_mib": 57.82,
+  "largest_files": [
+    {
+      "path": "data/processed/subnational_expansion_v3/subnational_profile_timeseries_v3.csv",
+      "bytes": 60627780,
+      "mib": 57.82
+    },
+    {
+      "path": "downloads/Global_LI_Subnational_Region_Year_Dataset.csv",
+      "bytes": 60627780,
+      "mib": 57.82
+    },
+    {
+      "path": "downloads/Global_LI_Subnational_Region_Year_Dataset.xlsx",
+      "bytes": 34245243,
+      "mib": 32.66
+    },
+    {
+      "path": "maps/subnational/can_adm1.geojson",
+      "bytes": 26022306,
+      "mib": 24.82
+    },
+    {
+      "path": "data/processed/dashboard_contract_v1/country_profile_timeseries.csv",
+      "bytes": 16895707,
+      "mib": 16.11
+    },
+    {
+      "path": "downloads/Global_LI_National_Country_Year_Dataset.csv",
+      "bytes": 9306648,
+      "mib": 8.88
+    },
+    {
+      "path": "maps/subnational/usa_adm1.geojson",
+      "bytes": 5469814,
+      "mib": 5.22
+    },
+    {
+      "path": "maps/subnational/ind_adm1.geojson",
+      "bytes": 5103747,
+      "mib": 4.87
+    },
+    {
+      "path": "data/processed/dashboard_contract_v1/subnational/subnational_profile_timeseries.csv",
+      "bytes": 4425813,
+      "mib": 4.22
+    },
+    {
+      "path": "maps/subnational/aus_adm1.geojson",
+      "bytes": 4213992,
+      "mib": 4.02
+    }
+  ],
+  "hosting_fit": {
+    "github_pages_recommended_site_limit_1gb": true,
+    "cloudflare_pages_single_asset_limit_25mib": false,
+    "netlify_static_deploy": true
+  },
+  "indexing_policy": "noindex/nofollow requested via meta tag, robots.txt, and _headers where supported; this is not access control.",
+  "rebuild_command_fast": "python3 scripts/build_share_site.py --root .",
+  "rebuild_command_full": "python3 scripts/build_share_site.py --root . --full-rebuild"
+}

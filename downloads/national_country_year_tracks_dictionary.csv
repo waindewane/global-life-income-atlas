@@ -1,0 +1,109 @@
+column,description
+country_code,ISO3-like country/entity code used by the processed panel.
+country_name,Country/entity name from the processed indicator panel.
+wb_country_name,"World Bank country API display name, where available."
+year,Calendar year.
+region,"World Bank region, where available."
+income_level,"World Bank income-level category, where available."
+is_wb_aggregate,1 if World Bank metadata classifies this code as an aggregate or regional group; 0 for non-aggregate countries/territories.
+in_primary_country_scope,TRUE for World Bank non-aggregate countries/territories used as the primary coverage denominator.
+research_scope,Scope classification for country/entity interpretation.
+core_gdppc,Core baseline: GDP per capita input.
+core_lexp,Core baseline: Life expectancy input.
+core_hale,Core baseline: Healthy life expectancy input.
+core_gini_raw,Core baseline: Gini input on the source scale.
+core_gini_01,Core baseline: Gini input normalized to 0-1.
+core_LI,"Core baseline: Life income, GDPpc multiplied by life expectancy."
+core_ILI,"Core baseline: Inequality-adjusted life income, LI multiplied by (1 - Gini)."
+core_HLI,"Core baseline: Healthy life income, GDPpc multiplied by HALE."
+core_IHLI,"Core baseline: Inequality-adjusted healthy life income, HLI multiplied by (1 - Gini)."
+core_missing_gdppc,Core baseline: 1 when GDP per capita is missing in this track.
+core_missing_lexp,Core baseline: 1 when life expectancy is missing in this track.
+core_missing_hale,Core baseline: 1 when HALE is missing in this track.
+core_missing_gini,Core baseline: 1 when Gini is missing in this track.
+core_has_gdppc,Core baseline: 1 when GDP per capita is available in this track.
+core_has_lexp,Core baseline: 1 when life expectancy is available in this track.
+core_has_gini,Core baseline: 1 when Gini is available in this track.
+core_has_hale,Core baseline: 1 when HALE is available in this track.
+core_can_compute_LI,Core baseline: 1 when LI prerequisites are available in this track.
+core_can_compute_ILI,Core baseline: 1 when ILI prerequisites are available in this track.
+core_can_compute_HLI,Core baseline: 1 when HLI prerequisites are available in this track.
+core_can_compute_IHLI,Core baseline: 1 when IHLI prerequisites are available in this track.
+extended_gini_gdppc,Extended Gini: GDP per capita input.
+extended_gini_lexp,Extended Gini: Life expectancy input.
+extended_gini_hale,Extended Gini: Healthy life expectancy input.
+extended_gini_gini_raw,Extended Gini: Gini input on the source scale.
+extended_gini_gini_01,Extended Gini: Gini input normalized to 0-1.
+extended_gini_LI,"Extended Gini: Life income, GDPpc multiplied by life expectancy."
+extended_gini_ILI,"Extended Gini: Inequality-adjusted life income, LI multiplied by (1 - Gini)."
+extended_gini_HLI,"Extended Gini: Healthy life income, GDPpc multiplied by HALE."
+extended_gini_IHLI,"Extended Gini: Inequality-adjusted healthy life income, HLI multiplied by (1 - Gini)."
+extended_gini_missing_gdppc,Extended Gini: 1 when GDP per capita is missing in this track.
+extended_gini_missing_lexp,Extended Gini: 1 when life expectancy is missing in this track.
+extended_gini_missing_hale,Extended Gini: 1 when HALE is missing in this track.
+extended_gini_missing_gini,Extended Gini: 1 when Gini is missing in this track.
+extended_gini_has_gdppc,Extended Gini: 1 when GDP per capita is available in this track.
+extended_gini_has_lexp,Extended Gini: 1 when life expectancy is available in this track.
+extended_gini_has_gini,Extended Gini: 1 when Gini is available in this track.
+extended_gini_has_hale,Extended Gini: 1 when HALE is available in this track.
+extended_gini_can_compute_LI,Extended Gini: 1 when LI prerequisites are available in this track.
+extended_gini_can_compute_ILI,Extended Gini: 1 when ILI prerequisites are available in this track.
+extended_gini_can_compute_HLI,Extended Gini: 1 when HLI prerequisites are available in this track.
+extended_gini_can_compute_IHLI,Extended Gini: 1 when IHLI prerequisites are available in this track.
+extended_hale_gdppc,Extended Gini + Extended HALE: GDP per capita input.
+extended_hale_lexp,Extended Gini + Extended HALE: Life expectancy input.
+extended_hale_hale,Extended Gini + Extended HALE: Healthy life expectancy input.
+extended_hale_gini_raw,Extended Gini + Extended HALE: Gini input on the source scale.
+extended_hale_gini_01,Extended Gini + Extended HALE: Gini input normalized to 0-1.
+extended_hale_LI,"Extended Gini + Extended HALE: Life income, GDPpc multiplied by life expectancy."
+extended_hale_ILI,"Extended Gini + Extended HALE: Inequality-adjusted life income, LI multiplied by (1 - Gini)."
+extended_hale_HLI,"Extended Gini + Extended HALE: Healthy life income, GDPpc multiplied by HALE."
+extended_hale_IHLI,"Extended Gini + Extended HALE: Inequality-adjusted healthy life income, HLI multiplied by (1 - Gini)."
+extended_hale_missing_gdppc,Extended Gini + Extended HALE: 1 when GDP per capita is missing in this track.
+extended_hale_missing_lexp,Extended Gini + Extended HALE: 1 when life expectancy is missing in this track.
+extended_hale_missing_hale,Extended Gini + Extended HALE: 1 when HALE is missing in this track.
+extended_hale_missing_gini,Extended Gini + Extended HALE: 1 when Gini is missing in this track.
+extended_hale_has_gdppc,Extended Gini + Extended HALE: 1 when GDP per capita is available in this track.
+extended_hale_has_lexp,Extended Gini + Extended HALE: 1 when life expectancy is available in this track.
+extended_hale_has_gini,Extended Gini + Extended HALE: 1 when Gini is available in this track.
+extended_hale_has_hale,Extended Gini + Extended HALE: 1 when HALE is available in this track.
+extended_hale_can_compute_LI,Extended Gini + Extended HALE: 1 when LI prerequisites are available in this track.
+extended_hale_can_compute_ILI,Extended Gini + Extended HALE: 1 when ILI prerequisites are available in this track.
+extended_hale_can_compute_HLI,Extended Gini + Extended HALE: 1 when HLI prerequisites are available in this track.
+extended_hale_can_compute_IHLI,Extended Gini + Extended HALE: 1 when IHLI prerequisites are available in this track.
+core_HLI_source_bundle,Core baseline: dashboard source-bundle token(s) for the HLI indicator.
+core_IHLI_source_bundle,Core baseline: dashboard source-bundle token(s) for the IHLI indicator.
+core_ILI_source_bundle,Core baseline: dashboard source-bundle token(s) for the ILI indicator.
+core_LI_source_bundle,Core baseline: dashboard source-bundle token(s) for the LI indicator.
+extended_gini_HLI_source_bundle,Extended Gini: dashboard source-bundle token(s) for the HLI indicator.
+extended_gini_IHLI_source_bundle,Extended Gini: dashboard source-bundle token(s) for the IHLI indicator.
+extended_gini_ILI_source_bundle,Extended Gini: dashboard source-bundle token(s) for the ILI indicator.
+extended_gini_LI_source_bundle,Extended Gini: dashboard source-bundle token(s) for the LI indicator.
+extended_hale_HLI_source_bundle,Extended Gini + Extended HALE: dashboard source-bundle token(s) for the HLI indicator.
+extended_hale_IHLI_source_bundle,Extended Gini + Extended HALE: dashboard source-bundle token(s) for the IHLI indicator.
+extended_hale_ILI_source_bundle,Extended Gini + Extended HALE: dashboard source-bundle token(s) for the ILI indicator.
+extended_hale_LI_source_bundle,Extended Gini + Extended HALE: dashboard source-bundle token(s) for the LI indicator.
+core_HLI_method_flag,Core baseline: method flag(s) for the HLI indicator.
+core_IHLI_method_flag,Core baseline: method flag(s) for the IHLI indicator.
+core_ILI_method_flag,Core baseline: method flag(s) for the ILI indicator.
+core_LI_method_flag,Core baseline: method flag(s) for the LI indicator.
+extended_gini_HLI_method_flag,Extended Gini: method flag(s) for the HLI indicator.
+extended_gini_IHLI_method_flag,Extended Gini: method flag(s) for the IHLI indicator.
+extended_gini_ILI_method_flag,Extended Gini: method flag(s) for the ILI indicator.
+extended_gini_LI_method_flag,Extended Gini: method flag(s) for the LI indicator.
+extended_hale_HLI_method_flag,Extended Gini + Extended HALE: method flag(s) for the HLI indicator.
+extended_hale_IHLI_method_flag,Extended Gini + Extended HALE: method flag(s) for the IHLI indicator.
+extended_hale_ILI_method_flag,Extended Gini + Extended HALE: method flag(s) for the ILI indicator.
+extended_hale_LI_method_flag,Extended Gini + Extended HALE: method flag(s) for the LI indicator.
+core_HLI_quality_flag,Core baseline: quality flag(s) for the HLI indicator.
+core_IHLI_quality_flag,Core baseline: quality flag(s) for the IHLI indicator.
+core_ILI_quality_flag,Core baseline: quality flag(s) for the ILI indicator.
+core_LI_quality_flag,Core baseline: quality flag(s) for the LI indicator.
+extended_gini_HLI_quality_flag,Extended Gini: quality flag(s) for the HLI indicator.
+extended_gini_IHLI_quality_flag,Extended Gini: quality flag(s) for the IHLI indicator.
+extended_gini_ILI_quality_flag,Extended Gini: quality flag(s) for the ILI indicator.
+extended_gini_LI_quality_flag,Extended Gini: quality flag(s) for the LI indicator.
+extended_hale_HLI_quality_flag,Extended Gini + Extended HALE: quality flag(s) for the HLI indicator.
+extended_hale_IHLI_quality_flag,Extended Gini + Extended HALE: quality flag(s) for the IHLI indicator.
+extended_hale_ILI_quality_flag,Extended Gini + Extended HALE: quality flag(s) for the ILI indicator.
+extended_hale_LI_quality_flag,Extended Gini + Extended HALE: quality flag(s) for the LI indicator.

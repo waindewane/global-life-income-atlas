@@ -1,0 +1,8 @@
+track,indicator,rows,countries,regional_datasets
+extended_experimental,ILI,1361,15,16
+extended_experimental,LI,10038,37,39
+modelled_hale_experimental,HLI,10672,27,27
+modelled_hale_experimental,IHLI,1361,7,7
+modelled_hale_experimental,ILI,1361,15,16
+modelled_hale_experimental,LI,52317,170,173
+official_clean,LI,52317,170,173

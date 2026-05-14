@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Source Comparability Disclosure</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Source Comparability Disclosure</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#source-comparability-disclosure"
+id="toc-source-comparability-disclosure">Source Comparability
+Disclosure</a></li>
+<li><a href="#current-formula-implications"
+id="toc-current-formula-implications">Current Formula
+Implications</a></li>
+<li><a href="#national-source-comparability"
+id="toc-national-source-comparability">National Source Comparability</a>
+<ul>
+<li><a href="#gdppc" id="toc-gdppc">GDPpc</a></li>
+<li><a href="#lexp" id="toc-lexp">LEXP</a></li>
+<li><a href="#gini" id="toc-gini">Gini</a></li>
+<li><a href="#hale" id="toc-hale">HALE</a></li>
+</ul></li>
+<li><a href="#extended-national-tracks"
+id="toc-extended-national-tracks">Extended National Tracks</a>
+<ul>
+<li><a href="#extended-gini" id="toc-extended-gini">Extended
+Gini</a></li>
+<li><a href="#extended-gini-extended-hale"
+id="toc-extended-gini-extended-hale">Extended Gini + Extended
+HALE</a></li>
+</ul></li>
+<li><a href="#subnational-source-comparability"
+id="toc-subnational-source-comparability">Subnational Source
+Comparability</a></li>
+<li><a href="#geography-bridge-disclosure"
+id="toc-geography-bridge-disclosure">Geography Bridge
+Disclosure</a></li>
+<li><a href="#specific-risks-and-current-mitigations"
+id="toc-specific-risks-and-current-mitigations">Specific Risks And
+Current Mitigations</a>
+<ul>
+<li><a
+href="#risk-1-inflation-or-price-year-mismatch-in-lifetime-income"
+id="toc-risk-1-inflation-or-price-year-mismatch-in-lifetime-income">Risk
+1: inflation or price-year mismatch in lifetime income</a></li>
+<li><a href="#risk-2-gini-concept-mismatch"
+id="toc-risk-2-gini-concept-mismatch">Risk 2: Gini concept
+mismatch</a></li>
+<li><a href="#risk-3-hale-source-and-age-definition-confusion"
+id="toc-risk-3-hale-source-and-age-definition-confusion">Risk 3: HALE
+source and age-definition confusion</a></li>
+</ul></li>
+<li><a href="#website-disclosure-decision"
+id="toc-website-disclosure-decision">Website Disclosure
+Decision</a></li>
+<li><a href="#audit-status" id="toc-audit-status">Audit Status</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<h1 id="source-comparability-disclosure">Source Comparability
+Disclosure</h1>
+<p>Last updated: 2026-05-13</p>
+<p>This disclosure is written for external readers of the atlas and
+release dataset. It explains where the project inputs are directly
+comparable, where they are only comparable within a source family, and
+where the project uses labelled extension sources rather than the core
+baseline source stack.</p>
+<p>This note records whether the project’s core inputs are comparable
+enough to support the published LI, ILI, HLI, and IHLI indicators. It
+focuses on measurement characteristics that can change interpretation
+even when formulas are implemented correctly: monetary units, price-year
+treatment, inequality concepts, health-expectancy definitions, and
+observed versus modelled evidence.</p>
+<p>The short conclusion is:</p>
+<ul>
+<li>National <code>LI</code> and <code>HLI</code> monetary inputs are on
+the strongest footing because national <code>GDPpc</code> uses World
+Bank WDI <code>NY.GDP.PCAP.PP.KD</code>, which is GDP per capita in
+constant 2021 international dollars adjusted by purchasing power
+parity.</li>
+<li>Subnational monetary inputs are not all the same
+currency/price-family. EU NUTS2 uses Eurostat PPS, OECD regional layers
+use OECD regional PPP-style units, China uses NBS/GDL source-family
+inputs, Mexico currently uses a GDL income proxy, Argentina uses
+constant-2004-peso PBG per capita, and Sri Lanka uses nominal monthly
+household income.</li>
+<li>Gini inputs are numerically standardized to 0-1, but their survey
+concepts differ. This is why the project keeps
+<code>Core baseline</code>, <code>Extended Gini</code>, and
+regional-source provenance separate.</li>
+<li>WHO HALE and IHME/GBD HALE should not be described as the same
+evidence class. WHO GHO remains the core baseline HALE source; IHME/GBD
+is accepted as a clearly labelled modelled extension.</li>
+</ul>
+<h1 id="current-formula-implications">Current Formula Implications</h1>
+<p>The indicators inherit the measurement unit of the component
+inputs.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>indicator</th>
+<th>formula</th>
+<th>inherited unit issue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LI</code></td>
+<td><code>GDPpc * LEXP</code></td>
+<td>Monetary unit of <code>GDPpc</code> multiplied by years of life
+expectancy.</td>
+</tr>
+<tr>
+<td><code>ILI</code></td>
+<td><code>GDPpc * LEXP * (1 - Gini)</code></td>
+<td>Same monetary-life unit as <code>LI</code>, adjusted by a unitless
+inequality factor.</td>
+</tr>
+<tr>
+<td><code>HLI</code></td>
+<td><code>GDPpc * HALE</code></td>
+<td>Monetary unit of <code>GDPpc</code> multiplied by
+healthy-life-expectancy years.</td>
+</tr>
+<tr>
+<td><code>IHLI</code></td>
+<td><code>GDPpc * HALE * (1 - Gini)</code></td>
+<td>Same monetary-healthy-life unit as <code>HLI</code>, adjusted by a
+unitless inequality factor.</td>
+</tr>
+</tbody>
+</table>
+<p>This means inflation and purchasing-power treatment matter most for
+<code>GDPpc</code>. If a GDPpc input is current-price or local-currency,
+<code>LI</code> and <code>HLI</code> can be distorted by inflation or
+exchange-rate changes. If a GDPpc input is constant PPP, it is much
+better suited for comparisons over time and across countries.</p>
+<h1 id="national-source-comparability">National Source
+Comparability</h1>
+<h2 id="gdppc">GDPpc</h2>
+<p>Current national input:</p>
+<ul>
+<li>Pipeline artifact:
+<code>data/raw/downloads/gdppc_ppp_constant_1990_2024_all.csv</code></li>
+<li>Pipeline source code:
+<code>scripts/bootstrap_worldbank_inputs.sh</code></li>
+<li>WDI code: <code>NY.GDP.PCAP.PP.KD</code></li>
+<li>World Bank label in the downloaded artifact:
+<code>GDP per capita, PPP (constant 2021 international $)</code></li>
+<li>Source link: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.PCAP.PP.KD"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.PCAP.PP.KD</a></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Treat the national monetary spine as inflation-adjusted and
+PPP-adjusted.</li>
+<li>Interpret national <code>LI</code>, <code>ILI</code>,
+<code>HLI</code>, and <code>IHLI</code> as using constant 2021
+international-dollar GDPpc units.</li>
+<li>Do not mix national values with subnational values from other
+monetary source-families without an explicit comparability warning.</li>
+</ul>
+<p>Remaining caveat:</p>
+<ul>
+<li>A change in World Bank PPP benchmark year can revise historical
+levels. The project should keep the WDI code and downloaded file headers
+in the release dataset so users can see which benchmark was used.</li>
+</ul>
+<h2 id="lexp">LEXP</h2>
+<p>Current national input:</p>
+<ul>
+<li>Pipeline artifact:
+<code>data/raw/downloads/lexp_1990_2024_all.csv</code></li>
+<li>WDI code: <code>SP.DYN.LE00.IN</code></li>
+<li>World Bank label in the downloaded artifact:
+<code>Life expectancy at birth, total (years)</code></li>
+<li>Source link: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.DYN.LE00.IN"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.DYN.LE00.IN</a></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Treat national <code>LEXP</code> as life expectancy at birth, total
+population.</li>
+<li>It is conceptually aligned with the paper formula and with the
+current website labels.</li>
+</ul>
+<p>Remaining caveat:</p>
+<ul>
+<li>Life expectancy is a period life-table measure, not a forecast of a
+real newborn cohort. This is standard and should not be treated as a
+project flaw, but the Methods page should keep “at birth” language
+clear.</li>
+</ul>
+<h2 id="gini">Gini</h2>
+<p>Current core national input:</p>
+<ul>
+<li>Pipeline artifact:
+<code>data/raw/downloads/gini_1990_2024_all.csv</code></li>
+<li>WDI code: <code>SI.POV.GINI</code></li>
+<li>World Bank label in the downloaded artifact:
+<code>Gini index</code></li>
+<li>Source link: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.GINI"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.GINI</a></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Treat World Bank WDI Gini as the core baseline inequality
+input.</li>
+<li>Normalize all Gini values to the 0-1 scale before applying
+<code>(1 - Gini)</code>.</li>
+<li>Keep the World Bank caveat visible: WDI Gini can be based on income
+or, in some countries, consumption expenditure.</li>
+</ul>
+<p>Remaining caveat:</p>
+<ul>
+<li>Gini values are unitless but not automatically concept-identical.
+Income Gini, consumption Gini, disposable-income Gini,
+equivalised-household-income Gini, and modelled disposable-income Gini
+can differ materially.</li>
+</ul>
+<h2 id="hale">HALE</h2>
+<p>Current core national input:</p>
+<ul>
+<li>Pipeline artifact:
+<code>data/raw/downloads/hale_who_1990_2024_all.csv</code></li>
+<li>WHO GHO indicator: <code>WHOSIS_000002</code></li>
+<li>Pipeline filter: <code>Dim1=SEX_BTSX</code> and
+<code>SpatialDimType=COUNTRY</code></li>
+<li>Source link: <a
+href="https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy-at-birth"
+class="uri">https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy-at-birth</a></li>
+<li>WHO metadata link: <a
+href="https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7752"
+class="uri">https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7752</a></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Treat WHO GHO HALE as the core baseline HALE source.</li>
+<li>Treat it as healthy life expectancy at birth, both sexes, in
+years.</li>
+<li>Preserve the split publication policy: core HLI/IHLI cannot extend
+past the available WHO HALE years without an explicit extension
+source.</li>
+</ul>
+<p>Remaining caveat:</p>
+<ul>
+<li>WHO HALE is an estimated summary measure and is not the same as raw
+observed mortality. WHO metadata notes method revisions over time;
+cross-release comparisons should therefore keep the downloaded artifact
+date and indicator code visible.</li>
+</ul>
+<h1 id="extended-national-tracks">Extended National Tracks</h1>
+<h2 id="extended-gini">Extended Gini</h2>
+<p>Current implementation:</p>
+<ul>
+<li>Source fusion script: <code>scripts/fuse_gini_sources.py</code></li>
+<li>Stage B runner:
+<code>scripts/run_stage_b_multisource_extension.sh</code></li>
+<li>Rule: first non-null source by explicit priority.</li>
+<li>Typical source concepts in the runner:
+<ul>
+<li><code>wb_income_or_consumption</code></li>
+<li><code>wiid_disposable_income</code></li>
+<li><code>wid_disposable_income</code></li>
+<li><code>oecd_idd_disposable_income</code></li>
+<li><code>swiid_disposable_income</code></li>
+</ul></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>Extended Gini improves computability, not conceptual purity.</li>
+<li>The extension is acceptable because it is separated from the core
+baseline and because row-level source labels are kept in details/audit
+files.</li>
+<li>The website and release dataset must not describe Extended Gini as
+if every row used one identical survey concept.</li>
+</ul>
+<p>Recommended website wording:</p>
+<blockquote>
+<p>Extended Gini adds additional inequality sources where the core World
+Bank Gini is missing; source concepts can differ and are carried in
+provenance fields.</p>
+</blockquote>
+<h2 id="extended-gini-extended-hale">Extended Gini + Extended HALE</h2>
+<p>Current implementation:</p>
+<ul>
+<li>Builder:
+<code>scripts/build_ihme_national_hale_track_v2.py</code></li>
+<li>Source bundle:
+<code>ihme_gbd_2023_national_hale_modelled</code></li>
+<li>Quality label:
+<code>ihme_modelled_hale_age_id_22_all_ages_metric_years_national</code></li>
+<li>Source link: <a href="https://vizhub.healthdata.org/gbd-results/"
+class="uri">https://vizhub.healthdata.org/gbd-results/</a></li>
+</ul>
+<p>Decision:</p>
+<ul>
+<li>IHME/GBD HALE is accepted as a modelled HALE extension, not as a
+replacement for WHO GHO HALE.</li>
+<li>It belongs in the <code>Extended Gini + Extended HALE</code>
+track.</li>
+<li>It should improve coverage only where the conservative WB ISO3 to
+IHME bridge maps unambiguously.</li>
+</ul>
+<p>Remaining caveat:</p>
+<ul>
+<li>The current IHME export is labelled
+<code>age_id 22 / All Ages</code>, sex Both, metric Years. IHME
+publications report HALE as a life-expectancy-at-birth summary measure,
+while the Results Tool export labels the age field as
+<code>All Ages</code>. The project therefore describes this as IHME/GBD
+modelled HALE, exported with age <code>All Ages</code> and interpreted
+as HALE at birth following GBD reporting conventions; the exact source
+label remains visible.</li>
+</ul>
+<h1 id="subnational-source-comparability">Subnational Source
+Comparability</h1>
+<p>Subnational outputs should be interpreted as source-family regional
+evidence, not as one perfectly harmonized global regional panel.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>source family</th>
+<th>current use</th>
+<th>monetary or concept note</th>
+<th>interpretation decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eurostat NUTS2</td>
+<td>EU27 NUTS2 <code>LI</code>; Portugal, Spain, France, Poland, Austria
+<code>ILI</code> overlays</td>
+<td>GDP per inhabitant is <code>PPS_EU27_2020_HAB</code>; life
+expectancy is Eurostat regional life expectancy at birth.</td>
+<td>Strong within-EU regional lane; not a literal replacement for World
+Bank constant 2021 international dollars.</td>
+</tr>
+<tr>
+<td>OECD regional layers</td>
+<td>U.S., Canada, Germany, China/India OECD-style regional layers where
+present</td>
+<td>OECD regional GDPpc uses OECD regional PPP-style units in the probe
+files.</td>
+<td>Useful for OECD-family regional comparison; keep source-family
+labels.</td>
+</tr>
+<tr>
+<td>Statistics Canada</td>
+<td>Canada Gini and other provincial inputs</td>
+<td>After-tax Gini and official Canadian regional tables.</td>
+<td>Good national-statistical-office source; concept differs from ACS,
+EU-SILC, and WDI Gini.</td>
+</tr>
+<tr>
+<td>U.S. Census ACS</td>
+<td>U.S. state Gini</td>
+<td>ACS B19083 state Gini.</td>
+<td>Good U.S. source; not identical to EU-SILC disposable/equivalised
+concepts.</td>
+</tr>
+<tr>
+<td>NBS China + GDL</td>
+<td>China province LI layer</td>
+<td>NBS provincial GDPpc plus GDL life expectancy or paper-comparison
+inputs, depending on lane.</td>
+<td>Formula-compatible but not yet a full paper replication or ILI
+output without province Gini.</td>
+</tr>
+<tr>
+<td>GDL + INEGI Mexico</td>
+<td>Mexico state <code>LI</code>/<code>ILI</code> layer</td>
+<td>GDL <code>lgnic</code> is an income/GNI-style proxy, not official
+state GDPpc; ENIGH supplies Gini.</td>
+<td>Useful labelled regional layer; should not be described as official
+state GDPpc-based ILI.</td>
+</tr>
+<tr>
+<td>Argentina DNAP</td>
+<td>Argentina province/CABA <code>LI</code>/<code>ILI</code> layer</td>
+<td>PBG per capita is in constant 2004 Argentine pesos; LEXP is a
+male/female average; Gini is EPH Total Urbano household per-capita
+family-income Gini.</td>
+<td>Useful within-Argentina regional layer; not directly comparable in
+levels to PPP GDPpc lanes.</td>
+</tr>
+<tr>
+<td>Sri Lanka DCS</td>
+<td>Sri Lanka district <code>LI</code>/<code>ILI</code> layer</td>
+<td>Income is nominal monthly household income in Sri Lankan rupees;
+LEXP is 2011-2013 male/female average; Gini is 2019 household-income
+Gini.</td>
+<td>Useful within-Sri-Lanka district layer; not directly comparable in
+levels to PPP GDPpc lanes and should be read with the time-shifted LEXP
+caveat.</td>
+</tr>
+<tr>
+<td>IHME/GBD subnational HALE</td>
+<td>selected regional HLI/IHLI</td>
+<td>Modelled HALE joined through curated bridges.</td>
+<td>Allowed as labelled modelled extension only.</td>
+</tr>
+</tbody>
+</table>
+<p>Important consequence:</p>
+<ul>
+<li>It is acceptable to compare regions within a regional dataset, and
+often within a common source family such as EU NUTS2.</li>
+<li>It is not yet methodologically clean to rank every subnational
+region in the world as if all GDPpc and Gini concepts were
+identical.</li>
+</ul>
+<h1 id="geography-bridge-disclosure">Geography Bridge Disclosure</h1>
+<p>The atlas distinguishes a missing source from a geography mismatch. A
+source is not discarded merely because its region names or boundary
+level differ from the current atlas layer, but it is also not used
+unless the bridge can be explained and reproduced.</p>
+<p>The project currently allows these geography bridges:</p>
+<ul>
+<li>Exact region-code joins, such as NUTS2 IDs or official
+province/district codes.</li>
+<li>Name or alias joins where the regions are the same but labels differ
+because of spelling, language, abbreviations, or diacritics.</li>
+<li>Aggregation from smaller source units to a broader displayed region,
+ideally with weights when the source concept requires them.</li>
+<li>Assignment from a broader but still genuinely subnational source
+region to its documented component regions, with a visible
+geography-proxy label.</li>
+<li>Separate source-specific geography layers when a useful source does
+not match an existing atlas geography.</li>
+</ul>
+<p>The project does not allow national-to-regional fanout in the main
+subnational atlas. A national Gini, national HALE, or national life
+expectancy value is not copied to all provinces, states, districts, or
+regions simply to fill gaps. If a future sensitivity exercise uses
+national values this way, it must be released as a separate experimental
+approximation product rather than as observed or modelled subnational
+evidence.</p>
+<p>Examples:</p>
+<ul>
+<li>Saudi Arabia is mapped through five genuine GDL macro-regions built
+from documented component administrative regions. This is a grouped
+subnational bridge, not national fanout.</li>
+<li>Thailand uses province-level HALE and province-level income Gini
+grouped to five GDL macro-regions. The Gini bridge is an unweighted
+province mean and is therefore labelled as a grouped subnational proxy,
+not a recomputed macro-region distribution.</li>
+<li>Belgium uses Sciensano healthy life years at age 15 as a labelled
+HLE proxy, not at-birth HALE. Flanders and Wallonia are broader source
+regions assigned to component NUTS2 provinces, while Brussels is
+exact.</li>
+<li>France and Spain include labelled cases where a broader or combined
+regional source value is assigned to component NUTS2 rows because the
+source reports a real subnational combined unit.</li>
+<li>Argentina and Sri Lanka use region-code joins for the implemented
+province and district datasets.</li>
+<li>Broad GDL SHDI regional datasets remain their own geography layers
+when they do not match another atlas source family.</li>
+</ul>
+<h1 id="specific-risks-and-current-mitigations">Specific Risks And
+Current Mitigations</h1>
+<h2 id="risk-1-inflation-or-price-year-mismatch-in-lifetime-income">Risk
+1: inflation or price-year mismatch in lifetime income</h2>
+<p>Assessment:</p>
+<ul>
+<li>National tracks: handled well by World Bank constant 2021 PPP
+GDPpc.</li>
+<li>EU NUTS2: handled within Eurostat PPS source-family, but not the
+same unit as World Bank constant 2021 international dollars.</li>
+<li>Mexico GDL: not official GDPpc; it is an income proxy.</li>
+<li>China and other regional layers: source-family notes remain
+necessary.</li>
+</ul>
+<p>Mitigation:</p>
+<ul>
+<li>Keep national and subnational comparability caveats visible.</li>
+<li>Add a Methods note that <code>LI</code> values inherit the GDPpc
+source unit.</li>
+<li>Preserve source bundle, method flag, and quality flag columns in
+downloads.</li>
+</ul>
+<h2 id="risk-2-gini-concept-mismatch">Risk 2: Gini concept mismatch</h2>
+<p>Assessment:</p>
+<ul>
+<li>Numerically standardized: yes.</li>
+<li>Conceptually harmonized across all sources: no.</li>
+</ul>
+<p>Mitigation:</p>
+<ul>
+<li>Keep <code>Core baseline</code> and <code>Extended Gini</code>
+separate.</li>
+<li>Keep subnational overlay source labels visible.</li>
+<li>Avoid describing Extended Gini as an official harmonized inequality
+panel.</li>
+<li>Germany and Netherlands now add official observed regional Gini
+overlays, but their concepts remain source-specific: Germany uses the
+Statistikportal Mikrozensus Land income-distribution Gini, while the
+Netherlands uses CBS VSO province Gini for standardized disposable
+income of private households excluding student households. Germany NUTS2
+rows using broader Land values are labelled as geography proxies.</li>
+</ul>
+<h2 id="risk-3-hale-source-and-age-definition-confusion">Risk 3: HALE
+source and age-definition confusion</h2>
+<p>Assessment:</p>
+<ul>
+<li>WHO GHO core HALE is clearly HALE at birth.</li>
+<li>IHME/GBD HALE is modelled and labelled with GBD export fields.</li>
+<li>OWID is not currently a production replacement; it is a validation
+mirror for WHO HALE.</li>
+</ul>
+<p>Mitigation:</p>
+<ul>
+<li>Keep WHO HALE in the core baseline.</li>
+<li>Keep IHME/GBD HALE only in the labelled Extended HALE lane.</li>
+<li>On the website, say “modelled IHME/GBD HALE” rather than simply
+“extra HALE.”</li>
+</ul>
+<h1 id="website-disclosure-decision">Website Disclosure Decision</h1>
+<p>The website should include a short Methods panel with these
+points:</p>
+<ol type="1">
+<li>National LI/HLI use World Bank constant 2021 PPP GDPpc, so national
+monetary comparisons are inflation- and purchasing-power-adjusted.</li>
+<li>Regional LI/HLI inherit the monetary unit of their source family; EU
+NUTS2, OECD TL2, GDL, NBS, and national-stat-office lanes are
+source-family comparable, not one globally harmonized regional currency
+panel.</li>
+<li>Gini values are scaled consistently, but source concepts differ.
+Extended Gini and subnational overlays therefore remain labelled.</li>
+<li>WHO HALE is the core baseline health input; IHME/GBD HALE is a
+clearly labelled modelled extension.</li>
+</ol>
+<h1 id="audit-status">Audit Status</h1>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>item</th>
+<th>status</th>
+<th>next action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>National GDPpc price/PPP basis</td>
+<td>reviewed</td>
+<td>Keep WDI code and constant-2021 label in dataset documentation.</td>
+</tr>
+<tr>
+<td>National LEXP at-birth definition</td>
+<td>reviewed</td>
+<td>Keep “at birth, total” labels visible.</td>
+</tr>
+<tr>
+<td>National core Gini concept</td>
+<td>reviewed with caveat</td>
+<td>Keep income/consumption caveat visible.</td>
+</tr>
+<tr>
+<td>Extended Gini concept consistency</td>
+<td>reviewed with caveat</td>
+<td>Use source details as interpretation guardrail.</td>
+</tr>
+<tr>
+<td>WHO HALE at-birth definition</td>
+<td>reviewed</td>
+<td>Keep as core baseline health source.</td>
+</tr>
+<tr>
+<td>IHME/GBD HALE modelled status</td>
+<td>reviewed with caveat</td>
+<td>Keep GBD export labels visible in methods/source fields.</td>
+</tr>
+<tr>
+<td>EU NUTS2 monetary comparability</td>
+<td>reviewed with caveat</td>
+<td>Treat as regional-Europe source-family lane.</td>
+</tr>
+<tr>
+<td>Mexico income-proxy status</td>
+<td>reviewed with caveat</td>
+<td>Keep proxy label prominent until official state GDPpc is
+integrated.</td>
+</tr>
+<tr>
+<td>Global subnational ranking comparability</td>
+<td>not release-ready</td>
+<td>Avoid claiming a fully harmonized global regional ranking.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="references">References</h1>
+<ul>
+<li>World Bank WDI <code>NY.GDP.PCAP.PP.KD</code>: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.PCAP.PP.KD"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/NY.GDP.PCAP.PP.KD</a></li>
+<li>World Bank WDI <code>SP.DYN.LE00.IN</code>: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.DYN.LE00.IN"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SP.DYN.LE00.IN</a></li>
+<li>World Bank WDI <code>SI.POV.GINI</code>: <a
+href="https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.GINI"
+class="uri">https://databank.worldbank.org/metadataglossary/world-development-indicators/series/SI.POV.GINI</a></li>
+<li>WHO GHO HALE at birth page: <a
+href="https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy-at-birth"
+class="uri">https://www.who.int/data/gho/data/indicators/indicator-details/GHO/gho-ghe-hale-healthy-life-expectancy-at-birth</a></li>
+<li>WHO HALE metadata registry: <a
+href="https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7752"
+class="uri">https://www.who.int/data/gho/indicator-metadata-registry/imr-details/7752</a></li>
+<li>Eurostat regional GDP table <code>nama_10r_2gdp</code>: <a
+href="https://ec.europa.eu/eurostat/databrowser/view/nama_10r_2gdp/default/table"
+class="uri">https://ec.europa.eu/eurostat/databrowser/view/nama_10r_2gdp/default/table</a></li>
+<li>Eurostat regional life expectancy table <code>demo_r_mlifexp</code>:
+<a
+href="https://ec.europa.eu/eurostat/databrowser/view/demo_r_mlifexp/default/table"
+class="uri">https://ec.europa.eu/eurostat/databrowser/view/demo_r_mlifexp/default/table</a></li>
+<li>Eurostat purchasing power parities information: <a
+href="https://ec.europa.eu/eurostat/web/purchasing-power-parities/information-data"
+class="uri">https://ec.europa.eu/eurostat/web/purchasing-power-parities/information-data</a></li>
+<li>OECD regional GDP data explorer: <a
+href="https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.CFE.EDS&amp;df%5Bds%5D=dsDisseminateFinalDMZ&amp;df%5Bid%5D=DSD_REG_ECO%40DF_GDP&amp;df%5Bvs%5D=1.0&amp;lc=en"
+class="uri">https://data-explorer.oecd.org/vis?df%5Bag%5D=OECD.CFE.EDS&amp;df%5Bds%5D=dsDisseminateFinalDMZ&amp;df%5Bid%5D=DSD_REG_ECO%40DF_GDP&amp;df%5Bvs%5D=1.0&amp;lc=en</a></li>
+<li>Global Data Lab Subnational HDI metadata: <a
+href="https://globaldatalab.org/shdi/metadata/incindex/"
+class="uri">https://globaldatalab.org/shdi/metadata/incindex/</a></li>
+<li>IHME GBD Results Tool: <a
+href="https://vizhub.healthdata.org/gbd-results/"
+class="uri">https://vizhub.healthdata.org/gbd-results/</a></li>
+</ul>
+</body>
+</html>
